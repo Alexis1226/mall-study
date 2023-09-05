@@ -1,4 +1,4 @@
-import "./scss/index.scss";
+import "../scss/index.scss";
 
 const MainPage = () => <div>메인</div>;
 

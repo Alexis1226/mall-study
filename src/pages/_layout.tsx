@@ -4,11 +4,13 @@ import { Outlet } from "react-router-dom";
 import { getClient } from "../queryClient";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import "/src/scss/index.scss";
+import Gnb from "../components/gnb";
 
 const Layout: React.FC = () => {
   const queryClient = getClient();
   return (
     <QueryClientProvider client={queryClient}>
+      <Gnb />
       <Suspense fallback={"loading..."}>
         <Outlet />
       </Suspense>
