@@ -12,8 +12,11 @@ const ProductList = () => {
       }),
   });
 
+  if (!data) return null;
+
   return (
     <div>
+      <h2>상품 목록</h2>
       <ul className="products">
         {data?.map((product) => (
           <ProductItem {...product} key={product.id} />
