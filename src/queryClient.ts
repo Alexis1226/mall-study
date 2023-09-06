@@ -1,4 +1,5 @@
 import { QueryClient } from "@tanstack/react-query";
+import request, { RequestDocument } from "graphql-request";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type AnyOBJ = { [key: string]: any };
 
@@ -21,9 +22,9 @@ export const getClient = (() => {
   };
 })();
 
-const BASE_URL = "https://fakestoreapi.com";
+const BASE_URL = "/";
 
-export const fetcher = async ({
+export const restFetcher = async ({
   method,
   path,
   body,
@@ -58,6 +59,11 @@ export const fetcher = async ({
     console.error(err);
   }
 };
+
+export const grqphQlFetcher = <T>(
+  query: RequestDocument,
+  variables = {}
+) => request<T>(BASE_URL, query, variables);
 
 export const QueryKeys = {
   PRODUCTS: "PRODUCTS",

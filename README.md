@@ -1,2 +1,2 @@
 React + TypeScript + Vite
-fake store api
+fake store api -> Mock Service Worker
