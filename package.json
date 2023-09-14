@@ -18,6 +18,7 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.15.0",
     "react-router-dom": "^6.15.0",
+    "recoil": "^0.7.7",
     "uuid": "^9.0.0",
     "vite-plugin-next-react-router": "^0.7.1"
   },
