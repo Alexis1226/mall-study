@@ -67,4 +67,5 @@ export const grqphQlFetcher = <T>(
 
 export const QueryKeys = {
   PRODUCTS: "PRODUCTS",
+  CART: "CART",
 };
