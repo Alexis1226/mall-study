@@ -25,7 +25,7 @@ export const GET_PRODUCTS = gql`
 `;
 
 export const GET_PRODUCT = gql`
-  query GET_PRODUCTS($id: string) {
+  query GET_PRODUCT($id: string) {
     id
     imageUrl
     price

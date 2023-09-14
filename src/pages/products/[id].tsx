@@ -14,8 +14,7 @@ const ProductDetailPage = () => {
   const { id } = useParams();
 
   const { data } = useQuery<Product>(
-    QueryKeys.PRODUCTS,
-    id,
+    [QueryKeys.PRODUCTS, id],
     () => grqphQlFetcher<Product>(GET_PRODUCT, { id })
   );
 
