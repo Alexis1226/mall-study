@@ -76,6 +76,7 @@ const CartItem = ({
       <input
         className="cart-item__checkbox"
         type="checkbox"
+        name={`select-item`}
       />
       <img className="cart-item__image" src={imageUrl} />
       <p className="cart-item__price">{price}</p>
