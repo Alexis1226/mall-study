@@ -3,11 +3,20 @@ import CartItem from "./item";
 
 const CartList = ({ items }: { items: CartType[] }) => {
   return (
-    <ul>
-      {items.map((item, index) => (
-        <CartItem {...item} key={index} />
-      ))}
-    </ul>
+    <>
+      <label htmlFor="">
+        <input
+          className="cart-item__checkbox"
+          type="checkbox"
+        />
+        전체선택
+      </label>
+      <ul className="cart">
+        {items.map((item, index) => (
+          <CartItem {...item} key={index} />
+        ))}
+      </ul>
+    </>
   );
 };
 

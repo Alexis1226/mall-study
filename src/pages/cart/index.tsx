@@ -11,7 +11,7 @@ const Cart = () => {
   const { data } = useQuery(
     [QueryKeys.CART],
     () => grqphQlFetcher(GET_CART),
-    { staleTime: 0, cacheTime: 10000 }
+    { staleTime: 0, cacheTime: 1000 }
   );
 
   const cartItems = Object.values(data || {}) as CartType[];
