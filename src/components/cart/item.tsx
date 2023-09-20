@@ -9,15 +9,13 @@ import {
   getClient,
   grqphQlFetcher,
 } from "../../queryClient";
-import { SyntheticEvent } from "react";
+import { ForwardedRef, SyntheticEvent } from "react";
+import ItemData from "./itemData";
 
-const CartItem = ({
-  id,
-  imageUrl,
-  price,
-  title,
-  amount,
-}: CartType) => {
+const CartItem = (
+  { id, imageUrl, price, title, amount }: CartType,
+  ref: ForwardedRef<HTMLInputElement>
+) => {
   const queryClient = getClient();
   const { mutate: updateCart } = useMutation(
     ({ id, amount }: { id: string; amount: number }) =>
@@ -77,10 +75,14 @@ const CartItem = ({
         className="cart-item__checkbox"
         type="checkbox"
         name={`select-item`}
+        ref={ref}
       />
-      <img className="cart-item__image" src={imageUrl} />
-      <p className="cart-item__price">{price}</p>
-      <p className="cart-item__title">{title}</p>
+      <ItemData
+        imageUrl={imageUrl}
+        price={price}
+        title={title}
+        data-id={id}
+      />
       <input
         className="cart_item__amount"
         type="number"

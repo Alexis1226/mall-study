@@ -19,4 +19,26 @@
     &__amount {
     }
   }
+
+  .cart-willpay{
+    display: flex ;
+    border: 1px solid black;
+    padding : 10px
+
+    ul{
+      display: flex;
+      gap: 10px;
+    }
+ 
+    li{
+      border : 1px solid black;
+      padding : 10px
+    }
+
+    img{
+    width : 100px;
+    height : 75px;
+    object-fit: contain;
+  }
+}
   
