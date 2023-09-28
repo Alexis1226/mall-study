@@ -7,27 +7,28 @@ import {
 } from "react";
 import { CartType } from "../../graphql/cart";
 import CartItem from "./item";
-import { useSetRecoilState } from "recoil";
+import { useRecoilState } from "recoil";
 import { checkedCartState } from "../../recoils/cart";
 import WillPay from "./willPay";
 
 const CartList = ({ items }: { items: CartType[] }) => {
-  const setCheckedCartDta = useSetRecoilState(
-    checkedCartState
-  );
+  const [checkedCartData, setCheckedCartData] =
+    useRecoilState(checkedCartState);
   const formRef = useRef<HTMLFormElement>(null);
   const checkboxRefs = items.map(() =>
     createRef<HTMLInputElement>()
   );
-  const [formData, setFormData] = useState<FormData>(null);
-
-  const handleCheckboxChanged = (e: SyntheticEvent) => {
+  const [formData, setFormData] = useState<FormData>();
+  const handleCheckboxChanged = (e?: SyntheticEvent) => {
     if (!formRef.current) return;
-    const targetInput = e.target as HTMLInputElement;
     const data = new FormData(formRef.current);
     const selectedCount = data.getAll("select-item").length;
 
-    if (targetInput.classList.contains("select-all")) {
+    const targetInput = e?.target as HTMLInputElement;
+    if (
+      targetInput &&
+      targetInput.classList.contains("select-all")
+    ) {
       // select-all 선택시
       const allChecked = targetInput.checked;
       checkboxRefs.forEach((inputElem) => {
@@ -43,6 +44,16 @@ const CartList = ({ items }: { items: CartType[] }) => {
   };
 
   useEffect(() => {
+    checkedCartData.forEach((item) => {
+      const itemRef = checkboxRefs.find(
+        (ref) => ref.current!.dataset.id === item.id
+      );
+      if (itemRef) itemRef.current!.checked = true;
+    });
+    handleCheckboxChanged();
+  }, []);
+
+  useEffect(() => {
     const checkedItems = checkboxRefs.reduce<CartType[]>(
       (res, ref, i) => {
         if (ref.current!.checked) res.push(items[i]);
@@ -50,7 +61,7 @@ const CartList = ({ items }: { items: CartType[] }) => {
       },
       []
     );
-    setCheckedCartDta(checkedItems);
+    setCheckedCartData(checkedItems);
   }, [items, formData]);
 
   return (

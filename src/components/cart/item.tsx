@@ -9,7 +9,11 @@ import {
   getClient,
   grqphQlFetcher,
 } from "../../queryClient";
-import { ForwardedRef, SyntheticEvent } from "react";
+import {
+  ForwardedRef,
+  SyntheticEvent,
+  forwardRef,
+} from "react";
 import ItemData from "./itemData";
 
 const CartItem = (
@@ -76,12 +80,12 @@ const CartItem = (
         type="checkbox"
         name={`select-item`}
         ref={ref}
+        data-id={id}
       />
       <ItemData
         imageUrl={imageUrl}
         price={price}
         title={title}
-        data-id={id}
       />
       <input
         className="cart_item__amount"
@@ -101,4 +105,4 @@ const CartItem = (
   );
 };
 
-export default CartItem;
+export default forwardRef(CartItem);

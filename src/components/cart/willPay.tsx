@@ -22,7 +22,7 @@ const WillPay = () => {
   };
 
   return (
-    <div className="cart_willpay">
+    <div className="cart-willpay">
       <ul>
         {checkedItems.map(
           ({ imageUrl, price, title, amount, id }) => (
