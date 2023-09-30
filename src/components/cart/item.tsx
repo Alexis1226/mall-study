@@ -39,7 +39,6 @@ const CartItem = (
         return prevCart;
       },
       onSuccess: (newValue) => {
-        console.log("newValue", newValue);
         const prevCart = queryClient.getQueryData<{
           [key: string]: CartType;
         }>([QueryKeys.CART]);

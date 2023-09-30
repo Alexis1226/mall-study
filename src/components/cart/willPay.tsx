@@ -13,6 +13,7 @@ const WillPay = () => {
     },
     0
   );
+
   const handleSubmit = () => {
     if (checkedItems.length) {
       navigate("/payment");
@@ -33,8 +34,8 @@ const WillPay = () => {
                 title={title}
                 key={id}
               />
-              <li>수량 : {amount}</li>
-              <li>rmador : {price * amount}</li>
+              <p>수량 : {amount}</p>
+              <p>rmador : {price * amount}</p>
             </li>
           )
         )}

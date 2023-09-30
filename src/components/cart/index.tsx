@@ -22,6 +22,7 @@ const CartList = ({ items }: { items: CartType[] }) => {
   const handleCheckboxChanged = (e?: SyntheticEvent) => {
     if (!formRef.current) return;
     const data = new FormData(formRef.current);
+    setFormData(data);
     const selectedCount = data.getAll("select-item").length;
 
     const targetInput = e?.target as HTMLInputElement;
