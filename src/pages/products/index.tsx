@@ -3,13 +3,13 @@ import {
   grqphQlFetcher,
   QueryKeys,
 } from "../../queryClient";
-import ProductItem from "../../components/product/item";
 import {
   GET_PRODUCTS,
   Products,
 } from "../../graphql/products";
+import ProductList from "../../components/product/list";
 
-const ProductList = () => {
+const ProductListPage = () => {
   const { data } = useQuery<Products>(
     [QueryKeys.PRODUCTS],
     () => grqphQlFetcher<Products>(GET_PRODUCTS)
@@ -18,13 +18,9 @@ const ProductList = () => {
   return (
     <div>
       <h2>상품 목록</h2>
-      <ul className="products">
-        {data?.products?.map((product) => (
-          <ProductItem {...product} key={product.id} />
-        ))}
-      </ul>
+      <ProductList list={data?.products || []} />
     </div>
   );
 };
 
-export default ProductList;
+export default ProductListPage;
