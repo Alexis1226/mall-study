@@ -8,11 +8,7 @@ import { useMutation } from "@tanstack/react-query";
 import { EXECUTE_PAY } from "../../graphql/payment";
 import { grqphQlFetcher } from "../../queryClient";
 
-type PayInfo = {
-  id: string;
-  amount: number;
-};
-type PaymentInfos = PayInfo[];
+type PaymentInfos = string[];
 
 const Payment = () => {
   const navigate = useNavigate();
@@ -27,12 +23,12 @@ const Payment = () => {
   const showModal = () => {
     toggleModal(true);
   };
+
   const proceed = () => {
-    const payInfos = checkedCartData.map(
-      ({ id, amount }) => ({ id, amount })
-    );
+    const payInfos = checkedCartData.map(({ id }) => id);
     excutePay(payInfos);
     setCheckedCartData([]);
+    alert("결제가 완료되었습니다.");
     navigate("/products", { replace: true });
   };
 
