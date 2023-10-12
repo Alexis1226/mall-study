@@ -8,7 +8,8 @@
   "private":"true",
   "workspaces":["client","server"],
   "scripts":{
-    "client":"yarn workspace client run dev"
+    "client":"yarn workspace client run dev",
+    "server":"yarn workspace server run dev"
   }
 }
  
