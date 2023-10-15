@@ -5,7 +5,7 @@ const productSchema = gql`
     id: ID!
     imageUrl: String!
     price: Int!
-    title: String
+    title: String!
     description: String
     createdAt: Float
   }

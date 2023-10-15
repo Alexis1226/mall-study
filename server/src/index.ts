@@ -2,12 +2,18 @@ import express from "express";
 import { ApolloServer } from "apollo-server-express";
 import schema from "./schema";
 import resolvers from "./resolvers";
+import { DBField, readDB } from "./dbController";
 
 (async () => {
   const server = new ApolloServer({
     typeDefs: schema,
     resolvers: resolvers,
-    // context: {},
+    context: {
+      db: {
+        products: readDB(DBField.PRODUCTS),
+        cart: readDB(DBField.CART),
+      },
+    },
   });
 
   const app = express();
