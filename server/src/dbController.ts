@@ -30,7 +30,7 @@ export const writeDB = (target: DBField, data: any) => {
   try {
     return fs.writeFileSync(
       filenames[target],
-      JSON.stringify(data)
+      JSON.stringify(data, null, " ")
     );
   } catch (error) {
     console.error(error);
