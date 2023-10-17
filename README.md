@@ -1,2 +1,6 @@
-React + TypeScript + Vite
-fake store api -> Mock Service Worker
+Client : React + TypeScript + Vite
+Server : GraphQl + Apllo Client
+
+### To-be
+
+- add <ErrorBoundary/>
