@@ -14,26 +14,29 @@ const CartItem = (
     {
       onMutate: async ({ id, amount }) => {
         await queryClient.cancelQueries([QueryKeys.CART]);
-        const prevCart = queryClient.getQueryData<{
-          [key: string]: CartType;
-        }>([QueryKeys.CART]);
-        if (!prevCart?.[id]) return prevCart;
-        const newCart = {
-          ...(prevCart || {}),
-          [id]: { ...prevCart[id], amount },
-        };
-        queryClient.setQueryData([QueryKeys.CART], newCart);
+        const { cart: prevCart } = queryClient.getQueryData<{ cart: CartType[] }>([
+          QueryKeys.CART,
+        ]) || { cart: [] };
+        if (!prevCart) return null;
+
+        const targetIndex = prevCart.findIndex((CartItem) => CartItem.id === id);
+        if (targetIndex === undefined || targetIndex < -1) return prevCart;
+
+        const newCart = [...prevCart];
+        newCart.splice(targetIndex, 1, { ...newCart[targetIndex], amount });
+        queryClient.setQueryData([QueryKeys.CART], { cart: newCart });
         return prevCart;
       },
-      onSuccess: (newValue) => {
-        const prevCart = queryClient.getQueryData<{
-          [key: string]: CartType;
-        }>([QueryKeys.CART]);
-        const newCart = {
-          ...(prevCart || {}),
-          // [id]:...newValue,
-        };
-        queryClient.setQueryData([QueryKeys.CART], newCart);
+      onSuccess: ({ updateCart }) => {
+        const { cart: prevCart } = queryClient.getQueryData<{ cart: CartType[] }>([
+          QueryKeys.CART,
+        ]) || { cart: [] };
+        const targetIndex = prevCart?.findIndex((CartItem) => CartItem.id === updateCart.id);
+        if (!prevCart || targetIndex === undefined || targetIndex < 0) return;
+
+        const newCart = [...prevCart];
+        newCart.splice(targetIndex, 1, updateCart);
+        queryClient.setQueryData([QueryKeys.CART], { cart: newCart });
       },
     }
   );
