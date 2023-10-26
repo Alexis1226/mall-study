@@ -1,18 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
-import {
-  grqphQlFetcher,
-  QueryKeys,
-} from "../../queryClient";
-import {
-  GET_PRODUCTS,
-  Products,
-} from "../../graphql/products";
-import ProductList from "../../components/product/list";
+import { useQuery } from '@tanstack/react-query';
+import { QueryKeys, graphQlFetcher } from '../../queryClient';
+import { GET_PRODUCTS, Products } from '../../graphql/products';
+import ProductList from '../../components/product/list';
 
 const ProductListPage = () => {
-  const { data } = useQuery<Products>(
-    [QueryKeys.PRODUCTS],
-    () => grqphQlFetcher<Products>(GET_PRODUCTS)
+  const { data } = useQuery<Products>([QueryKeys.PRODUCTS], () =>
+    graphQlFetcher<Products>(GET_PRODUCTS)
   );
 
   return (

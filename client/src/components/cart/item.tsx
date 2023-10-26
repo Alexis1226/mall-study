@@ -1,29 +1,16 @@
-import { useMutation } from "@tanstack/react-query";
-import {
-  CartType,
-  DELETE_CART,
-  UPDATE_CART,
-} from "../../graphql/cart";
-import {
-  QueryKeys,
-  getClient,
-  grqphQlFetcher,
-} from "../../queryClient";
-import {
-  ForwardedRef,
-  SyntheticEvent,
-  forwardRef,
-} from "react";
-import ItemData from "./itemData";
+import { useMutation } from '@tanstack/react-query';
+import { CartType, DELETE_CART, UPDATE_CART } from '../../graphql/cart';
+import { QueryKeys, getClient, graphQlFetcher } from '../../queryClient';
+import { ForwardedRef, SyntheticEvent, forwardRef } from 'react';
+import ItemData from './itemData';
 
 const CartItem = (
-  { id, imageUrl, price, title, amount }: CartType,
+  { id, product: { imageUrl, price, title }, amount }: CartType,
   ref: ForwardedRef<HTMLInputElement>
 ) => {
   const queryClient = getClient();
   const { mutate: updateCart } = useMutation(
-    ({ id, amount }: { id: string; amount: number }) =>
-      grqphQlFetcher(UPDATE_CART, { id, amount }),
+    ({ id, amount }: { id: string; amount: number }) => graphQlFetcher(UPDATE_CART, { id, amount }),
     {
       onMutate: async ({ id, amount }) => {
         await queryClient.cancelQueries([QueryKeys.CART]);
@@ -52,8 +39,7 @@ const CartItem = (
   );
 
   const { mutate: deleteCart } = useMutation(
-    ({ id }: { id: string }) =>
-      grqphQlFetcher(DELETE_CART, { id }),
+    ({ id }: { id: string }) => graphQlFetcher(DELETE_CART, { id }),
     {
       onSuccess: () => {
         queryClient.invalidateQueries([QueryKeys.CART]);
@@ -62,9 +48,7 @@ const CartItem = (
   );
 
   const handleUpdateAmount = (e: SyntheticEvent) => {
-    const amount = Number(
-      (e.target as HTMLInputElement).value
-    );
+    const amount = Number((e.target as HTMLInputElement).value);
     if (amount < 1) return;
     updateCart({ id, amount });
   };
@@ -81,11 +65,7 @@ const CartItem = (
         ref={ref}
         data-id={id}
       />
-      <ItemData
-        imageUrl={imageUrl}
-        price={price}
-        title={title}
-      />
+      <ItemData imageUrl={imageUrl} price={price} title={title} />
       <input
         className="cart_item__amount"
         type="number"
@@ -93,11 +73,7 @@ const CartItem = (
         value={amount}
         onChange={handleUpdateAmount}
       />
-      <button
-        className="cart-item__button"
-        type="button"
-        onClick={handleDeleteItem}
-      >
+      <button className="cart-item__button" type="button" onClick={handleDeleteItem}>
         삭제
       </button>
     </li>
