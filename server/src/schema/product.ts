@@ -1,4 +1,4 @@
-import { gql } from "apollo-server-express";
+import { gql } from 'apollo-server-express';
 
 const productSchema = gql`
   type Product {
@@ -11,7 +11,7 @@ const productSchema = gql`
   }
 
   extend type Query {
-    products: [Product!]
+    products(cursor: ID): [Product!]
     product(id: ID!): Product!
   }
 `;
