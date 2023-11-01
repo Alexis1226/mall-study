@@ -33,7 +33,6 @@ const cartResolver: Resolver = {
       };
       db.cart.push(newItem);
       setJSON(db.cart);
-      console.log('newItem', newItem);
       return newItem;
     },
     updateCart: (parent, { id, amount }, { db }) => {

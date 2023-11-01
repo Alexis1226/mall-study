@@ -6,9 +6,12 @@ const setJSON = (data: Products) => writeDB(DBField.PRODUCTS, data);
 
 const productResolver: Resolver = {
   Query: {
-    products: (parent, { cursor = '' }, { db }) => {
+    products: (parent, { cursor = '', showDeleted = false }, { db }) => {
+      const filteredDB = showDeleted
+        ? db.products
+        : db.products.filter((product) => !!product.createdAt);
       const fromIndex = db.products.findIndex((product) => product.id === cursor) + 1;
-      return db.products.slice(fromIndex, fromIndex + 15) || [];
+      return filteredDB.slice(fromIndex, fromIndex + 15) || [];
     },
     product: (parent, { id }, { db }) => {
       const found = db.products.find((item) => item.id === id);
@@ -26,7 +29,6 @@ const productResolver: Resolver = {
         description,
         createdAt: Date.now(),
       };
-      console.log('newProduct', newProduct);
       db.products.push(newProduct);
       setJSON(db.products);
       return newProduct;

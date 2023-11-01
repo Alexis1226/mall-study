@@ -1,8 +1,8 @@
-import express from "express";
-import { ApolloServer } from "apollo-server-express";
-import schema from "./schema";
-import resolvers from "./resolvers";
-import { DBField, readDB } from "./dbController";
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import schema from './schema';
+import resolvers from './resolvers';
+import { DBField, readDB } from './dbController';
 
 (async () => {
   const server = new ApolloServer({
@@ -20,15 +20,12 @@ import { DBField, readDB } from "./dbController";
   await server.start();
   server.applyMiddleware({
     app,
-    path: "/graphql",
+    path: '/graphql',
     cors: {
-      origin: [
-        "http://localhost:5173",
-        "https://studio.apollographql.com",
-      ],
+      origin: ['http://localhost:5173', 'https://studio.apollographql.com'],
       credentials: true,
     },
   });
   await app.listen({ port: 8000 });
-  console.log("server listening on 8000....");
+  console.log('server listening on 8000....');
 })();
