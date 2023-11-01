@@ -1,4 +1,8 @@
-import { Resolver } from './types';
+import { DBField, writeDB } from '../dbController';
+import { Products, Resolver } from './types';
+import { v4 as uuid } from 'uuid';
+
+const setJSON = (data: Products) => writeDB(DBField.PRODUCTS, data);
 
 const productResolver: Resolver = {
   Query: {
@@ -10,6 +14,49 @@ const productResolver: Resolver = {
       const found = db.products.find((item) => item.id === id);
       if (found) return found;
       return null;
+    },
+  },
+  Mutation: {
+    addProduct: (parent, { imageUrl, price, title, description }, { db }) => {
+      const newProduct = {
+        id: uuid(),
+        imageUrl,
+        price,
+        title,
+        description,
+        createdAt: Date.now(),
+      };
+      console.log('newProduct', newProduct);
+      db.products.push(newProduct);
+      setJSON(db.products);
+      return newProduct;
+    },
+    updateProduct: (parent, { id, ...data }, { db }) => {
+      const existProductIndex = db.products.findIndex((item) => item.id === id);
+      if (existProductIndex < 0) {
+        throw new Error('없는 데이터입니다');
+      }
+      const updatedItem = {
+        ...db.products[existProductIndex],
+        ...data,
+      };
+      db.products.splice(existProductIndex, 1, updatedItem);
+      setJSON(db.products);
+      return updatedItem;
+    },
+    deleteProduct: (parent, { id }, { db }) => {
+      // 실제 db에서 delete를 하는 대신 creatdAt을 지워준다.
+      const existProductIndex = db.products.findIndex((item) => item.id === id);
+      if (existProductIndex < 0) {
+        throw new Error('없는 데이터입니다');
+      }
+      const updatedItem = {
+        ...db.products[existProductIndex],
+      };
+      delete updatedItem.createdAt;
+      db.products.splice(existProductIndex, 1, updatedItem);
+      setJSON(db.products);
+      return id;
     },
   },
 };
