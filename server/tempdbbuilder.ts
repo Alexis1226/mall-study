@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { DBField, writeDB } from './src/dbController';
 
-const db = Array.from({ length: 100 }).map((_, i) => ({
+const db = Array.from({ length: 40 }).map((_, i) => ({
   id: uuid(),
   imageUrl: `https://picsum.photos/200/150?random=${i}`,
   price: 1000 + Math.floor(Math.random() * 20) * 500,

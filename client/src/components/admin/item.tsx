@@ -4,7 +4,7 @@ import { graphQlFetcher } from '../../queryClient';
 import { useMutation } from '@tanstack/react-query';
 import { ADD_CART } from '../../graphql/cart';
 
-const ProductItem = ({ id, imageUrl, price, title }: Product) => {
+const AdminItem = ({ id, imageUrl, price, title, createdAt }: Product) => {
   const { mutate: addCart } = useMutation((id: string) => graphQlFetcher(ADD_CART, { id }));
 
   return (
@@ -14,11 +14,12 @@ const ProductItem = ({ id, imageUrl, price, title }: Product) => {
         <img className="product-item__image" src={imageUrl} />
         <span className="product-item__price">₩{price}</span>
       </Link>
+      {!createdAt && <span>삭제된 상품</span>}
       <button className="product-item__add-cart" onClick={() => addCart(id)}>
-        담기
+        어드민
       </button>
     </li>
   );
 };
 
-export default ProductItem;
+export default AdminItem;

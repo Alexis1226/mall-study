@@ -7,10 +7,15 @@ const setJSON = (data: Products) => writeDB(DBField.PRODUCTS, data);
 const productResolver: Resolver = {
   Query: {
     products: (parent, { cursor = '', showDeleted = false }, { db }) => {
-      const filteredDB = showDeleted
-        ? db.products
-        : db.products.filter((product) => !!product.createdAt);
-      const fromIndex = db.products.findIndex((product) => product.id === cursor) + 1;
+      const [hasCreated, noCreatedAt] = [
+        db.products
+          .filter((product) => !!product.createdAt)
+          .sort((a, b) => b.createdAt! - a.createdAt!),
+        db.products.filter((product) => !product.createdAt),
+      ];
+      const filteredDB = showDeleted ? [...hasCreated, ...noCreatedAt] : hasCreated;
+      const fromIndex = filteredDB.findIndex((product) => product.id === cursor) + 1;
+
       return filteredDB.slice(fromIndex, fromIndex + 15) || [];
     },
     product: (parent, { id }, { db }) => {

@@ -23,7 +23,6 @@ const cartResolver: Resolver = {
         };
         db.cart.splice(existCartIndex, 1, newCartItem);
         setJSON(db.cart);
-        console.log('newCartItem1', newCartItem);
         return newCartItem;
       }
 
