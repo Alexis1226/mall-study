@@ -1,11 +1,67 @@
 import { Link } from 'react-router-dom';
-import { Product } from '../../graphql/products';
-import { graphQlFetcher } from '../../queryClient';
+import { Product, UPDATE_PRODUCT, MutableProduct } from '../../graphql/products';
+import { QueryKeys, getClient, graphQlFetcher } from '../../queryClient';
 import { useMutation } from '@tanstack/react-query';
-import { ADD_CART } from '../../graphql/cart';
+import arrToObj from '../../utill/arrToObj';
+import { SyntheticEvent } from 'react';
 
-const AdminItem = ({ id, imageUrl, price, title, createdAt }: Product) => {
-  const { mutate: addCart } = useMutation((id: string) => graphQlFetcher(ADD_CART, { id }));
+const AdminItem = ({
+  id,
+  imageUrl,
+  price,
+  title,
+  description,
+  createdAt,
+  isEditing,
+  startEdit,
+  doneEdit,
+}: Product & { isEditing: boolean; startEdit: () => void; doneEdit: () => void }) => {
+  const queryClient = getClient();
+  const { mutate: updateProduct } = useMutation(
+    ({ title, imageUrl, price, description }: MutableProduct) =>
+      graphQlFetcher(UPDATE_PRODUCT, { id, title, imageUrl, price, description }),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries([QueryKeys.PRODUCTS], {
+          exact: false,
+          refetchType: 'all',
+        });
+        doneEdit();
+      },
+    }
+  );
+
+  const handleSubmit = (e: SyntheticEvent) => {
+    e.preventDefault();
+    const formData = arrToObj([...new FormData(e.target as HTMLFormElement)]);
+    formData.price = Number(formData.price);
+    console.log('formData', formData);
+    updateProduct(formData as MutableProduct);
+  };
+
+  if (isEditing)
+    return (
+      <li className="product-item">
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="title">
+            상품명 : <input name="title" type="text" defaultValue={title} />
+          </label>
+          <label htmlFor="imageUrl">
+            이미지URL:
+            <input name="imageUrl" type="text" defaultValue={imageUrl} />
+          </label>
+          <label htmlFor="price">
+            상품가격:
+            <input name="price" type="text" required min="1000" defaultValue={price} />
+          </label>
+          <label htmlFor="description">
+            상세 :
+            <textarea name="description" defaultValue={description} />
+          </label>
+          <button type="submit">저장</button>
+        </form>
+      </li>
+    );
 
   return (
     <li className="product-item">
@@ -15,8 +71,8 @@ const AdminItem = ({ id, imageUrl, price, title, createdAt }: Product) => {
         <span className="product-item__price">₩{price}</span>
       </Link>
       {!createdAt && <span>삭제된 상품</span>}
-      <button className="product-item__add-cart" onClick={() => addCart(id)}>
-        어드민
+      <button className="product-item__add-cart" onClick={startEdit}>
+        수정
       </button>
     </li>
   );

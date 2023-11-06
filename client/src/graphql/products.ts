@@ -13,6 +13,8 @@ export type Products = {
   products: Product[];
 };
 
+export type MutableProduct = Omit<Product, 'id' | 'createdAt'>;
+
 export const GET_PRODUCTS = gql`
   query GET_PRODUCTS($cursor: ID, $showDeleted: Boolean) {
     products(cursor: $cursor, showDeleted: $showDeleted) {

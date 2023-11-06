@@ -1,13 +1,13 @@
-import { useEffect, useRef } from 'react';
-import ProductList from '../product/list';
+import { useEffect, useRef, useState } from 'react';
 import AddForm from './addForm';
 import useIntersection from '../../hooks/useIntersection';
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { Products } from '../../graphql/products';
+import { GET_PRODUCTS, Products } from '../../graphql/products';
 import { QueryKeys, graphQlFetcher } from '../../queryClient';
-import AdminItem from './item';
+import AdminList from './list';
 
 const Admin = () => {
+  const [editingIndex, setEditingIndex] = useState<number | null>(null);
   const fetchMoreRef = useRef<HTMLDivElement>(null);
   const intersecting = useIntersection(fetchMoreRef);
 
@@ -23,6 +23,9 @@ const Admin = () => {
       }
     );
 
+  const startEdit = (index: number) => () => setEditingIndex(index);
+  const doneEdit = (index: number) => setEditingIndex(null);
+
   useEffect(() => {
     if (!intersecting || !isSuccess || !intersecting || !hasNextPage || isFetchingNextPage) return;
     fetchNextPage();
@@ -31,7 +34,12 @@ const Admin = () => {
   return (
     <div>
       <AddForm />
-      <ProductList list={data?.pages || []} Item={AdminItem} />
+      <AdminList
+        list={data?.pages || []}
+        editingIndex={editingIndex}
+        startEdit={startEdit}
+        doneEdit={doneEdit}
+      />
       <div ref={fetchMoreRef}></div>
     </div>
   );

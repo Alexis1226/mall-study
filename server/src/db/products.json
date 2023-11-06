@@ -369,16 +369,16 @@
  {
   "id": "cd4fd000-8cda-4c9f-a6f1-287f568712f0",
   "imageUrl": "https://picsum.photos/200/150?random=114",
-  "price": 34000,
-  "title": "three",
+  "price": 34,
+  "title": "three_수정11",
   "description": "three four",
   "createdAt": 1699081107659
  },
  {
   "id": "5fd5074e-87f9-4066-9f0c-181e341f2cd3",
   "imageUrl": "https://picsum.photos/200/150?random=118",
-  "price": 34000,
-  "title": "four",
+  "price": 340,
+  "title": "four_11",
   "description": "fourfour",
   "createdAt": 1699257799624
  },
@@ -386,7 +386,7 @@
   "id": "fffaba16-e053-4a41-8d69-4a512e3dd081",
   "imageUrl": "https://picsum.photos/200/150?random=115",
   "price": 23000,
-  "title": "five",
+  "title": "five_11",
   "description": "fivefive",
   "createdAt": 1699257831230
  }
