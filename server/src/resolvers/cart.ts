@@ -57,10 +57,14 @@ const cartResolver: Resolver = {
       return id;
     },
     excutePay: (parent, { ids }, { db }) => {
-      const newCartData = db.cart.filter((cartItem) => {
-        if (!ids.includes(cartItem.id)) return true;
-        return false;
-      });
+      const newCartData = db.cart.filter((cartItem) => !ids.includes(cartItem.id));
+      if (
+        ids.some((id: string) => {
+          const product = db.products.find((product: any) => product.id === id);
+          return !product?.createdAt;
+        })
+      )
+        throw new Error('결제할 상품에 삭제된 상품이 있습니다');
       db.cart = newCartData;
       setJSON(db.cart);
       return ids;

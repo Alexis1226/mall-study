@@ -12,6 +12,9 @@ const CartList = ({ items }: { items: CartType[] }) => {
   const formRef = useRef<HTMLFormElement>(null);
   const checkboxRefs = items.map(() => createRef<HTMLInputElement>());
   const [formData, setFormData] = useState<FormData>();
+
+  const enabledItem = items.filter((item) => item.product.createdAt);
+
   const handleCheckboxChanged = (e?: SyntheticEvent) => {
     if (!formRef.current) return;
     const data = new FormData(formRef.current);
@@ -22,12 +25,16 @@ const CartList = ({ items }: { items: CartType[] }) => {
     if (targetInput && targetInput.classList.contains('select-all')) {
       // select-all 선택시
       const allChecked = targetInput.checked;
-      checkboxRefs.forEach((inputElem) => {
-        inputElem.current!.checked = allChecked;
-      });
+      checkboxRefs
+        .filter((inputElem) => {
+          return !inputElem.current!.disabled;
+        })
+        .forEach((inputElem) => {
+          inputElem.current!.checked = allChecked;
+        });
     } else {
       // 개별 아이템 선택시
-      const allChecked = selectedCount === items.length;
+      const allChecked = selectedCount === enabledItem.length;
       formRef.current.querySelector<HTMLInputElement>('.select-all')!.checked = allChecked;
     }
   };

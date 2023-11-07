@@ -315,8 +315,7 @@
   "imageUrl": "https://picsum.photos/200/150?random=39",
   "price": 5500,
   "title": "임시상품39",
-  "description": "임시 상세 내용 39",
-  "createdAt": 1643126841540
+  "description": "임시 상세 내용 39"
  },
  {
   "id": "88a1b0e6-77f5-435d-a9e0-f71c7db4a381",
@@ -339,55 +338,48 @@
   "imageUrl": "https://picsum.photos/200/150?random=104",
   "price": 230000,
   "title": "sample",
-  "description": "sample",
-  "createdAt": 1699007545671
+  "description": "sample"
  },
  {
   "id": "8bf67f55-a7e0-46b8-b16d-1242883cc560",
   "imageUrl": "https://picsum.photos/200/150?random=110",
   "price": 340000,
   "title": "sample",
-  "description": "sample",
-  "createdAt": 1699008473425
+  "description": "sample"
  },
  {
   "id": "ef914c69-6229-4029-825b-edce2486a1f5",
   "imageUrl": "https://picsum.photos/200/150?random=111",
   "price": 342000,
   "title": "sam",
-  "description": "sample12",
-  "createdAt": 1699080245234
+  "description": "sample12"
  },
  {
   "id": "58b6b68f-2327-4a3a-8f98-83781828f136",
   "imageUrl": "https://picsum.photos/200/150?random=112",
   "price": 134234000,
   "title": "another",
-  "description": "sample",
-  "createdAt": 1699080924189
+  "description": "sample"
  },
  {
   "id": "cd4fd000-8cda-4c9f-a6f1-287f568712f0",
   "imageUrl": "https://picsum.photos/200/150?random=114",
   "price": 34,
   "title": "three_수정11",
-  "description": "three four",
-  "createdAt": 1699081107659
+  "description": "three four"
  },
  {
   "id": "5fd5074e-87f9-4066-9f0c-181e341f2cd3",
   "imageUrl": "https://picsum.photos/200/150?random=118",
   "price": 340,
   "title": "four_11",
-  "description": "fourfour",
-  "createdAt": 1699257799624
+  "description": "fourfour"
  },
  {
   "id": "fffaba16-e053-4a41-8d69-4a512e3dd081",
   "imageUrl": "https://picsum.photos/200/150?random=115",
   "price": 23000,
   "title": "five_11",
-  "description": "fivefive",
-  "createdAt": 1699257831230
+  "description": "fivefive"
  }
 ]
