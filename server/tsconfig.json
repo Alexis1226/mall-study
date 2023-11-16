@@ -20,5 +20,5 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": ["**/*.ts"],
-  "exclude": ["node_moudles"],
+  "exclude": ["node_moudles"]
 }

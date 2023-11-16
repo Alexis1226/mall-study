@@ -5,10 +5,16 @@
   "repository": "https://github.com/Alexis1226/mall-study.git",
   "author": "Alexis1226 <feuri41@gmail.com>",
   "license": "MIT",
-  "private":"true",
-  "workspaces":["client","server"],
-  "scripts":{
-    "client":"yarn workspace client run dev",
-    "server":"yarn workspace server run dev"
+  "private": "true",
+  "workspaces": [
+    "client",
+    "server"
+  ],
+  "scripts": {
+    "client": "yarn workspace client run dev",
+    "server": "yarn workspace server run dev"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
   }
 }
