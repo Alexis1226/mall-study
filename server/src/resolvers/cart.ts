@@ -1,12 +1,21 @@
+import { DocumentData, collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import { DBField, writeDB } from '../dbController';
 import { Cart, Resolver } from './types';
+import { db } from '../../firebase';
 
 const setJSON = (data: Cart) => writeDB(DBField.CART, data);
 
 const cartResolver: Resolver = {
   Query: {
-    cart: (parent, args, { db }) => {
-      return db.cart;
+    cart: async (parent, args) => {
+      const cart = collection(db, 'cart');
+      const cartsnap = await getDocs(cart);
+      const data: DocumentData[] = [];
+      cartsnap.forEach((doc) => {
+        const d = doc.data();
+        data.push({ id: doc.id, ...d });
+      });
+      return data;
     },
   },
   Mutation: {
@@ -72,8 +81,12 @@ const cartResolver: Resolver = {
   },
   CartItem: {
     // cartItem이 상위항목인 아이템의 product항목은 아래에서 구한 값으로 채워 넣는다
-    product: (cartItem, args, { db }) =>
-      db.products.find((product: any) => product.id === cartItem.id),
+    product: async (cartItem, args) => {
+      const product = await getDoc(cartItem.product);
+      const data = product.data as any;
+      return { ...data, id: data.id };
+      // db.products.find((product: any) => product.id === cartItem.id),
+    },
   },
 };
 
