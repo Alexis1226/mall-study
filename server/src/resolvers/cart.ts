@@ -1,4 +1,4 @@
-import { DocumentData, collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
+import { DocumentData, collection, getDoc, getDocs } from 'firebase/firestore';
 import { DBField, writeDB } from '../dbController';
 import { Cart, Resolver } from './types';
 import { db } from '../../firebase';
@@ -83,9 +83,8 @@ const cartResolver: Resolver = {
     // cartItem이 상위항목인 아이템의 product항목은 아래에서 구한 값으로 채워 넣는다
     product: async (cartItem, args) => {
       const product = await getDoc(cartItem.product);
-      const data = product.data as any;
-      return { ...data, id: data.id };
-      // db.products.find((product: any) => product.id === cartItem.id),
+      const data = product.data() as any;
+      return { ...data, id: product.id };
     },
   },
 };
