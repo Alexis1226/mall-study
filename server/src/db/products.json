@@ -381,5 +381,13 @@
   "price": 23000,
   "title": "five_11",
   "description": "fivefive"
+ },
+ {
+  "id": "240294d8-e1f1-47a7-b58b-c215e468f6cc",
+  "imageUrl": "https://cdn-mart.baemin.com/sellergoods/main/17c607df-e718-4fb5-a2eb-d7103b1308a1.jpg?h=300&w=300",
+  "price": 1600,
+  "title": "20온스 컵",
+  "description": "20온스 컵 라이트형 입니다",
+  "createdAt": 1700393681911
  }
 ]
