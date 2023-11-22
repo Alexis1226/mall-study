@@ -8,8 +8,7 @@
     "apollo-server-express": "^3.12.1",
     "express": "^4.18.2",
     "firebase": "^10.5.2",
-    "graphql": "^16.8.1",
-    "uuid": "^9.0.1"
+    "graphql": "^16.8.1"
   },
   "devDependencies": {
     "@tsconfig/node16": "^16.1.1",
@@ -19,6 +18,8 @@
     "ts-node": "^10.9.1"
   },
   "scripts": {
-    "dev": "nodemon --exec 'ts-node ./src/index.ts'"
+    "dev": "nodemon --exec 'ts-node ./src/index.ts'",
+    "build": "rm -rf dist && tsc",
+    "server": "npm run build && cross -env NODE_ENV=production node ./dist/index.js"
   }
 }

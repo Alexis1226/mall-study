@@ -12,7 +12,8 @@
   ],
   "scripts": {
     "client": "yarn workspace client run dev",
-    "server": "yarn workspace server run dev"
+    "server": "yarn workspace server run dev",
+    "start": "cd server && npm run server"
   },
   "dependencies": {
     "dotenv": "^16.3.1"

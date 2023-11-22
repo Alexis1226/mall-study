@@ -2,18 +2,14 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import schema from './schema';
 import resolvers from './resolvers';
-import { DBField, readDB } from './dbController';
+import env from './envLoader';
 
 (async () => {
+  const clientUrl = env.CLIENT_URL as string;
+  const port = env.PORT || 8000;
   const server = new ApolloServer({
     typeDefs: schema,
     resolvers: resolvers,
-    context: {
-      db: {
-        products: readDB(DBField.PRODUCTS),
-        cart: readDB(DBField.CART),
-      },
-    },
   });
 
   const app = express();
@@ -22,10 +18,10 @@ import { DBField, readDB } from './dbController';
     app,
     path: '/graphql',
     cors: {
-      origin: ['http://localhost:5173', 'https://studio.apollographql.com'],
+      origin: [clientUrl, 'https://studio.apollographql.com'],
       credentials: true,
     },
   });
-  await app.listen({ port: 8000 });
-  console.log('server listening on 8000....');
+  await app.listen({ port });
+  console.log(`server listening on ${port}....`);
 })();
