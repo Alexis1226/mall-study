@@ -47,7 +47,6 @@ const AdminItem = ({
     e.preventDefault();
     const formData = arrToObj([...new FormData(e.target as HTMLFormElement)]);
     formData.price = Number(formData.price);
-    console.log('formData', formData);
     updateProduct(formData as MutableProduct);
   };
 

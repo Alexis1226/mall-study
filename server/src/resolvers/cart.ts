@@ -28,9 +28,9 @@ const cartResolver: Resolver = {
     },
   },
   Mutation: {
-    addCart: async (parent, { id }) => {
-      if (!id) throw Error('id가 없습니다');
-      const targetProduct = doc(db, 'products', id);
+    addCart: async (parent, { productId }) => {
+      if (!productId) throw Error('id가 없습니다');
+      const targetProduct = doc(db, 'products', productId);
       const cartCollection = collection(db, 'cart');
       let cartRef;
       const exist = (await getDocs(query(cartCollection, where('product', '==', targetProduct))))
