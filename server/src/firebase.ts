@@ -1,18 +1,18 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app';
-import 'dotenv/config';
 import { getFirestore } from 'firebase/firestore';
+import env from './envLoader';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: process.env.fb_apiKey,
-  authDomain: process.env.fb_authDomain,
-  projectId: process.env.fb_projectId,
-  storageBucket: process.env.fb_storageBucket,
-  messagingSenderId: process.env.fb_messagingSenderId,
-  appId: process.env.fb_appId,
+  apiKey: env.fb_apiKey,
+  authDomain: env.fb_authDomain,
+  projectId: env.fb_projectId,
+  storageBucket: env.fb_storageBucket,
+  messagingSenderId: env.fb_messagingSenderId,
+  appId: env.fb_appId,
 };
 
 // Initialize Firebase
