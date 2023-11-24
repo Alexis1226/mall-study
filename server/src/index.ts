@@ -18,7 +18,11 @@ import env from './envLoader';
     app,
     path: '/graphql',
     cors: {
-      origin: [clientUrl, 'https://studio.apollographql.com'],
+      origin: [
+        clientUrl,
+        'https://studio.apollographql.com',
+        'https://mall-study-client-ilou.vercel.app',
+      ],
       credentials: true,
     },
   });
