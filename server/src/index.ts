@@ -16,7 +16,7 @@ import env from './envLoader';
   await server.start();
   server.applyMiddleware({
     app,
-    path: 'graphql',
+    path: '/graphql',
     cors: {
       origin: [clientUrl, 'https://studio.apollographql.com'],
       credentials: true,
