@@ -1,28 +1,81 @@
 @import 'products';
 @import 'cart';
 @import 'payment';
+@import 'admin';
 
-body{
-    margin: 0;
+@font-face {
+  font-family: 'DayLife Day';
+  src: local('DayLife Day'), url('../fonts/DAYLIFE-DAY.ttf') format('truetype');
 }
 
-#root{
-    max-width:  900px;
-    margin: 0 auto;
-    padding: 10px;
+@font-face {
+  font-family: 'DayLife Night';
+  src: local('DayLife Night'), url('../fonts/DAYLIFE-NIGHT.ttf') format('truetype');
 }
 
-ul{
-    list-style: none;
-    padding: 0;
+body {
+  margin: 0;
+  color: #1b3d31;
+  background-color: rgb(235, 239, 210);
+  font-family: sans-serif;
+  box-sizing: border-box;
+  padding: 12px;
+}
+
+#root {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
 }
 
 .gnb {
-    ul{
+  #mall {
+    display: flex;
+    height: 6vh;
+    justify-content: center;
+    align-items: center;
+    font-size: 5vh;
+    font-family: 'DayLife Day';
+    cursor: pointer;
+    a {
+      color: currentColor;
+      text-decoration: none;
+    }
+  }
+
+  ul {
     padding: 0;
     list-style: none;
     display: flex;
     flex-direction: row;
     gap: 10px;
-}
+
+    li {
+      font-size: 24px;
+      a {
+        color: currentColor;
+        text-decoration: none;
+
+        &.afterEffect {
+          position: relative;
+
+          &:after {
+            display: block;
+            position: absolute;
+            left: 0;
+            right: 0;
+            content: '';
+            top: 9px;
+            height: 8px;
+            background-color: rgba(27, 77, 255, 0.5);
+          }
+        }
+      }
+    }
+  }
 }

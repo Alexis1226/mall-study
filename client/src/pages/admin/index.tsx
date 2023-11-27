@@ -1,9 +1,10 @@
 import Admin from '../../components/admin';
+import AddForm from '../../components/admin/addForm';
 
 const AdminPage = () => {
   return (
     <div>
-      <h2>Admin</h2>
+      <AddForm />
       <Admin />
     </div>
   );
