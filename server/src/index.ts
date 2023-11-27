@@ -12,8 +12,6 @@ import env from './envLoader';
     resolvers: resolvers,
   });
 
-  console.log(clientUrl);
-
   const app = express();
   await server.start();
   server.applyMiddleware({
