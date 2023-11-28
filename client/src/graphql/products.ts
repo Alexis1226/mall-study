@@ -30,7 +30,7 @@ export const GET_PRODUCTS = gql`
 
 export const GET_PRODUCT = gql`
   query GET_PRODUCT($id: ID!) {
-    product(id: $id, showDeleted: $showDeleted) {
+    product(id: $id) {
       id
       imageUrl
       price
