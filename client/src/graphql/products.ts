@@ -29,7 +29,7 @@ export const GET_PRODUCTS = gql`
 `;
 
 export const GET_PRODUCT = gql`
-  query GET_PRODUCT($id: ID!, $showDeleted: Boolean) {
+  query GET_PRODUCT($id: ID!) {
     product(id: $id, showDeleted: $showDeleted) {
       id
       imageUrl
