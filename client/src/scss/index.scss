@@ -2,6 +2,7 @@
 @import 'cart';
 @import 'payment';
 // @import 'admin';
+@import 'color';
 
 @font-face {
   font-family: 'DayLife Day';
@@ -15,8 +16,8 @@
 
 body {
   margin: 0;
-  color: #1b3d31;
-  background-color: rgb(235, 239, 210);
+  color: var(--darkgreen);
+  background-color: var(--yellowgreen);
   font-family: sans-serif;
   box-sizing: border-box;
   padding: 12px;
@@ -72,7 +73,7 @@ ul {
             content: '';
             top: 9px;
             height: 8px;
-            background-color: rgba(27, 77, 255, 0.5);
+            background-color: var(--blue);
           }
         }
       }
