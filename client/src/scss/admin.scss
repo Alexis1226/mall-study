@@ -1,0 +1,35 @@
+.form__adminAdd {
+  border: 1px solid currentColor;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  label {
+    display: flex;
+    flex-direction: column;
+  }
+
+  input,
+  textarea {
+    width: 160px;
+    border: 1px solid var(--darkgreen);
+    border-radius: 4px;
+    background-color: rgb(from var(--darkgreen) r g b / 10%);
+    padding: 4px;
+    margin: 8px 0;
+  }
+
+  button {
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid var(--darkgreen);
+    border-radius: 4px;
+    color: var(--darkgreen);
+    background: rgb(from var(--darkgreen) r g b / 10%);
+    margin: auto 0;
+    padding: 4px 8px;
+    cursor: pointer;
+  }
+}
