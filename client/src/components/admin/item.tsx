@@ -82,16 +82,18 @@ const AdminItem = ({
     <li className="product-item">
       <Link to={`/products/${id}`}>
         <p className="product-item__title">{title}</p>
+        {!createdAt && <span className="product-item__delete-msg">*삭제된 상품*</span>}
         <img className="product-item__image" src={imageUrl} />
-        <span className="product-item__price">₩{price}</span>
+        <div>
+          <span className="product-item__price">₩{price}</span>
+          <button className="product-item__add-cart" onClick={startEdit}>
+            수정
+          </button>
+          <button className="product-item__delete-cart" onClick={deleteItem}>
+            삭제
+          </button>
+        </div>
       </Link>
-      {!createdAt && <span>삭제된 상품</span>}
-      <button className="product-item__add-cart" onClick={startEdit}>
-        수정
-      </button>
-      <button className="product-item__delete-cart" onClick={deleteItem}>
-        삭제
-      </button>
     </li>
   );
 };
