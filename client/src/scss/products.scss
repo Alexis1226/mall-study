@@ -4,6 +4,37 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
+
+  @media (max-width: 690px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.product__price-button {
+  width: 100%;
+  max-width: 460px;
+  display: inline-flex;
+  align-items: center;
+
+  justify-content: right;
+
+  & > button {
+    font-weight: bold;
+    font-size: 16px;
+    width: fit-content;
+    height: fit-content;
+    border: 1px solid var(--darkgreen);
+    border-radius: 4px;
+    color: var(--darkgreen);
+    background: rgb(from var(--darkgreen) r g b / 10%);
+    margin: 8px 4px;
+    padding: 4px 8px;
+    cursor: pointer;
+  }
+
+  & > button:first-of-type {
+    margin-left: auto;
+  }
 }
 
 .product-item {
@@ -11,11 +42,17 @@
   background: rgba(whitesmoke, 90%);
   border-radius: 16px;
   position: relative;
+  overflow: hidden;
 
   &__title {
+    display: block;
     font-weight: bold;
     font-size: 20px;
     text-align: center;
+    word-break: break-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   &__delete-msg {
@@ -35,34 +72,28 @@
     font-size: 18px;
   }
 
-  div {
-    width: 100%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: right;
-
-    & > button:first-of-type {
-      margin-left: auto;
-    }
-  }
-
   a {
     color: currentColor;
     text-decoration: none;
   }
+}
 
-  button {
-    text-align: end;
-    font-weight: bold;
-    font-size: 16px;
-    width: fit-content;
-    height: fit-content;
-    border: 1px solid var(--darkgreen);
-    border-radius: 4px;
-    color: var(--darkgreen);
-    background: rgb(from var(--darkgreen) r g b / 10%);
-    margin: 8px 4px;
-    padding: 4px 8px;
-    cursor: pointer;
+.product-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  &__image {
+    width: 180px;
+  }
+
+  &__price {
+    font-size: 28px;
+  }
+
+  &__description {
+    font-size: 20px;
+    max-width: 460px;
   }
 }
