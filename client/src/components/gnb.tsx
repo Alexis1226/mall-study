@@ -3,17 +3,18 @@ import '../fonts/DAYLIFE-DAY.ttf';
 
 const Gnb = () => {
   const { pathname } = useLocation();
+
   return (
     <nav className="gnb">
       <div id="mall">
-        <Link to="/">MALL</Link>
+        <Link to="/products">MALL</Link>
       </div>
       <ul>
-        <li>
+        {/* <li>
           <Link to="/" className={pathname === '/' ? 'afterEffect' : ''}>
             홈
           </Link>
-        </li>
+        </li> */}
         <li>
           <Link to="/products" className={pathname === '/products' ? 'afterEffect' : ''}>
             상품목록
