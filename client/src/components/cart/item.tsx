@@ -70,20 +70,22 @@ const CartItem = (
         disabled={!createdAt}
       />
       <ItemData imageUrl={imageUrl} price={price} title={title} />
-      {!createdAt ? (
-        <div>삭제된 상품입니다</div>
-      ) : (
-        <input
-          className="cart_item__amount"
-          type="number"
-          min={1}
-          value={amount}
-          onChange={handleUpdateAmount}
-        />
-      )}
-      <button className="cart-item__button" type="button" onClick={handleDeleteItem}>
-        삭제
-      </button>
+      <div className="cart_amount-button">
+        {!createdAt ? (
+          <div className="cart-item__delete-msg">삭제된 상품입니다</div>
+        ) : (
+          <input
+            className="cart_item__amount"
+            type="number"
+            min={1}
+            value={amount}
+            onChange={handleUpdateAmount}
+          />
+        )}
+        <button className="cart-item__button" type="button" onClick={handleDeleteItem}>
+          삭제
+        </button>
+      </div>
     </li>
   );
 };

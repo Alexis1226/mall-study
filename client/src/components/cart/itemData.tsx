@@ -4,8 +4,10 @@ const ItemData = ({ imageUrl, price, title }: Pick<Product, 'imageUrl' | 'price'
   return (
     <>
       <img className="cart-item__image" src={imageUrl} />
-      <p className="cart-item__price">{price}</p>
-      <p className="cart-item__title">{title}</p>
+      <div className="cart-item__title-price">
+        <p className="cart-item__title">{title}</p>
+        <p className="cart-item__price">{price}</p>
+      </div>
     </>
   );
 };
