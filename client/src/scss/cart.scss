@@ -12,17 +12,10 @@ form {
   list-style: none;
 
   button {
-    font-weight: bold;
-    font-size: 16px;
-    width: fit-content;
-    height: fit-content;
-    border: 1px solid var(--darkgreen);
-    border-radius: 4px;
-    color: var(--darkgreen);
-    background: rgb(from var(--darkgreen) r g b / 10%);
-    margin: 8px 4px;
-    padding: 4px 8px;
-    cursor: pointer;
+    width: 48px;
+    height: 28px;
+    margin: 0 4px;
+    padding: 4px;
   }
 }
 
@@ -31,8 +24,18 @@ form {
   padding: 10px;
   align-items: center;
 
+  & + & {
+    border-top: 1px solid rgb(from var(--darkgreen) r g b / 40%);
+  }
+
   input {
     width: 30px;
+    height: 18px;
+    border: 1px solid var(--darkgreen);
+    border-radius: 4px;
+    background-color: rgb(from var(--darkgreen) r g b / 10%);
+    padding: 4px;
+    margin: 0 0;
   }
 
   &__image {
@@ -68,6 +71,7 @@ form {
 
   .cart_amount-button {
     width: 100px;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: right;
@@ -76,14 +80,43 @@ form {
 
 .cart-willpay {
   padding: 10px;
+
   ul {
-    display: flex;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+
+    @media (max-width: 680px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   li {
-    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
     padding: 10px;
+    border: 1px solid var(--darkgreen);
+    background: rgba(whitesmoke, 90%);
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+    font-size: 14px;
+    box-shadow: 4px 4px 4px 0px rgb(from var(--darkgreen) r g b / 50%);
+
+    .cart-item__title {
+      display: block;
+      width: 100%;
+      font-weight: bold;
+      font-size: 16px;
+      word-break: break-all;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    & > p {
+      margin: 2px 12px;
+    }
   }
 
   img {
@@ -91,4 +124,27 @@ form {
     height: 75px;
     object-fit: contain;
   }
+
+  .cart-willpay__confirm {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+    p {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    button {
+      width: fit-content;
+      height: fit-content;
+      margin-left: 12px;
+      padding: 4px 8px;
+    }
+  }
+}
+
+// 토스 페이먼츠
+#payment-widget {
+  border-radius: 4px;
 }

@@ -34,6 +34,16 @@ ul {
   padding: 0;
 }
 
+button {
+  font-weight: bold;
+  font-size: 16px;
+  border: 1px solid var(--darkgreen);
+  color: var(--darkgreen);
+  background: rgb(from var(--darkgreen) r g b / 10%);
+  cursor: pointer;
+  border-radius: 4px;
+}
+
 .gnb {
   #mall {
     display: flex;
