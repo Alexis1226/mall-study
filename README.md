@@ -1,6 +1,6 @@
 # Mall
 
-![Mall image](/public/Mall.png)
+![Mall image](/public/mall.png)
 
 React의 페이지기반 라우팅을 적용한 쇼핑몰 [배포 링크 클릭!](https://mall-study-client-ilou.vercel.app/products)
 
